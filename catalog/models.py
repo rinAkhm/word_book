@@ -38,7 +38,7 @@ class Author(models.Model):
                                      null=True, blank=True)
 
     def __str__(self):
-        return self.lastname
+        return self.last_name
 
 
 class Book(models.Model):
@@ -65,6 +65,11 @@ class Book(models.Model):
     isbn = models.CharField(max_length=13,
                             help_text='Должно содержать 13 символов',
                             verbose_name='ISBN книги')
+
+    def display_author(self):
+        return ', '.join([author.last_name for author in self.author.all()])
+
+    display_author.short_description = 'Авторы'
 
     def __str__(self):
         return self.title
