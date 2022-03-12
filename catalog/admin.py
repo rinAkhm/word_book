@@ -24,7 +24,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
     fieldsets = (('Экземпляр книги', {
         'fields': ('book', 'imprint', 'inv_number')}),
 
-                 ('Статус и окнчание действия',
+                 ('Статус и окончание действия',
                   {'fields': ('status', 'due_back')}),)
 
 
