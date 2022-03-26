@@ -20,13 +20,17 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
     list_filter = ('book', 'status')
-    fieldsets = (('Экземпляр книги', {
-        'fields': ('book', 'imprint', 'inv_number')}),
 
-                 ('Статус и окончание действия',
-                  {'fields': ('status', 'due_back')}),)
-
+    fieldsets = (
+        (None, {
+                'fields': ('book', 'imprint', 'inv_nom')
+        }),
+        ('Availability', {
+            'fields': ('status', 'due_back', 'borrower')
+            }),
+    )
 
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Genre)
